@@ -26,6 +26,12 @@ FROM ${CONTAINER_REGISTRY}/busybox:stable-musl AS busybox
 
 # ---- runtime stage: static-web-server (distroless, scratch-based) ----
 FROM ${CONTAINER_REGISTRY}/joseluisq/static-web-server:2
+ARG MP_VERSION
+
+LABEL org.opencontainers.image.title="Masterportal" \
+      org.opencontainers.image.description="Masterportal web application served by static-web-server" \
+      org.opencontainers.image.source="https://bitbucket.org/geowerkstatt-hamburg/masterportal" \
+      org.opencontainers.image.version="${MP_VERSION}"
 
 ENV SERVER_PORT=8080 \
     SERVER_ROOT=/srv \
